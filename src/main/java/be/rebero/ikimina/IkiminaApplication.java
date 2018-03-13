@@ -1,5 +1,6 @@
 package be.rebero.ikimina;
 
+import be.rebero.ikimina.model.Type.RoleType;
 import be.rebero.ikimina.model.auth.Role;
 import be.rebero.ikimina.model.auth.User;
 import be.rebero.ikimina.repository.RolesRepository;
@@ -32,11 +33,11 @@ public class IkiminaApplication {
 
 			/* Default Roles */
 			Role adminRole = new Role();
-			adminRole.setName("ADMIN");
+			adminRole.setName(RoleType.ADMIN);
 			Role userRole = new Role();
-			userRole.setName("USER");
+			userRole.setName(RoleType.USER);
 			Role accountantRole = new Role();
-			accountantRole.setName("ACCOUNTANT");
+			accountantRole.setName(RoleType.ACCOUNTANT);
 
 			/* User 1: Admin */
 			User user = new User();

@@ -1,5 +1,7 @@
 package be.rebero.ikimina.model.auth;
 
+import be.rebero.ikimina.model.Type.RoleType;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,7 +13,8 @@ public class Role {
 	private long id;
 
 	@Column(nullable = false)
-	private String name;
+	@Enumerated(EnumType.STRING)
+	private RoleType name;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
 	private Set<User> users;
@@ -24,11 +27,11 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getName() {
+	public RoleType getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(RoleType name) {
 		this.name = name;
 	}
 
