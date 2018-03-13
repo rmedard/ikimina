@@ -29,19 +29,24 @@ public class IkiminaApplication {
 	@Bean
 	InitializingBean createInitData(){
 		if (rolesRepository.findAll().isEmpty()){
+
+			/* Default Roles */
 			Role adminRole = new Role();
 			adminRole.setName("ADMIN");
 			Role userRole = new Role();
 			userRole.setName("USER");
+			Role accountantRole = new Role();
+			accountantRole.setName("ACCOUNTANT");
 
+			/* User 1: Admin */
 			User user = new User();
 			user.setUsername("medard");
 			Set<Role> userRoles = new HashSet<>();
 			userRoles.add(adminRole);
 			user.setRoles(userRoles);
 			return () -> {
-//				rolesRepository.save(adminRole);
 				rolesRepository.save(userRole);
+				rolesRepository.save(accountantRole);
 				usersRepository.save(user);
 			};
 		}

@@ -10,6 +10,7 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@Column(nullable = false)
 	private String name;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")

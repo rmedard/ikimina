@@ -13,11 +13,13 @@ public class Debt extends Auditable<String> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@Column(nullable = false)
 	private Date startDate;
 
 	private Date endDate;
 
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private DebtType type;
 
 	@OneToMany(mappedBy = "debt", cascade = CascadeType.ALL, orphanRemoval = true)
