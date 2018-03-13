@@ -1,7 +1,7 @@
 package be.rebero.ikimina.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Account extends Auditable<String> {
@@ -10,6 +10,14 @@ public class Account extends Auditable<String> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@OneToMany(mappedBy = "accounts")
-	private Set<Debtor> debtors;
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Debtor> debts;
+
+	public List<Debtor> getDebts() {
+		return debts;
+	}
+
+	public void setDebts(List<Debtor> debts) {
+		this.debts = debts;
+	}
 }

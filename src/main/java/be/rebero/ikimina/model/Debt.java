@@ -4,7 +4,7 @@ import be.rebero.ikimina.model.Type.DebtType;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Debt extends Auditable<String> {
@@ -20,11 +20,8 @@ public class Debt extends Auditable<String> {
 	@Enumerated(EnumType.STRING)
 	private DebtType type;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "debtor",
-			joinColumns = @JoinColumn(name = "debt_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"))
-	private Set<Account> accounts;
+	@OneToMany(mappedBy = "debt", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Debtor> accounts;
 
 	private boolean closed;
 
@@ -55,11 +52,11 @@ public class Debt extends Auditable<String> {
 		this.type = type;
 	}
 
-	public Set<Account> getAccounts() {
+	public List<Debtor> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(Set<Account> accounts) {
+	public void setAccounts(List<Debtor> accounts) {
 		this.accounts = accounts;
 	}
 

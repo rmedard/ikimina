@@ -7,16 +7,15 @@ import javax.persistence.*;
 @Entity
 public class Debtor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@EmbeddedId
+	private AccountDebtId id;
 
-	@Column(name = "account_id")
-	@OneToMany(mappedBy = "debts")
+	@MapsId("account_id")
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Account account;
 
-	@Column(name = "debt_id")
-	@OneToMany(mappedBy = "accounts")
+	@MapsId("debt_id")
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Debt debt;
 
 	@Enumerated(EnumType.STRING)
