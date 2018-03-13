@@ -1,6 +1,7 @@
 package be.rebero.ikimina.model.auth;
 
 import be.rebero.ikimina.model.Auditable;
+import be.rebero.ikimina.model.Member;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -14,6 +15,9 @@ public class User extends Auditable<String> {
 
 	@Column(nullable = false, length = 10, unique = true)
 	private String username;
+
+	@OneToOne(targetEntity = Member.class)
+	private Member member;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "role_user",
@@ -36,6 +40,14 @@ public class User extends Auditable<String> {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	public Set<Role> getRoles() {
