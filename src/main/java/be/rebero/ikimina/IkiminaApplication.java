@@ -28,8 +28,8 @@ public class IkiminaApplication {
 	}
 
 	@Bean
-	InitializingBean createInitData(){
-		if (rolesRepository.findAll().isEmpty()){
+	InitializingBean createInitData() {
+		if (rolesRepository.findAll().isEmpty()) {
 
 			/* Default Roles */
 			Role adminRole = new Role();
