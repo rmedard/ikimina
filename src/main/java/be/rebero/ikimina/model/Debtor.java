@@ -11,8 +11,12 @@ public class Debtor {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@Column(name = "account_id")
+	@OneToMany(mappedBy = "debts")
 	private Account account;
 
+	@Column(name = "debt_id")
+	@OneToMany(mappedBy = "accounts")
 	private Debt debt;
 
 	@Enumerated(EnumType.STRING)

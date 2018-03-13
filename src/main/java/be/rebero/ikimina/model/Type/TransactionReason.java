@@ -1,5 +1,5 @@
 package be.rebero.ikimina.model.Type;
 
-public enum TransactionReasonType {
+public enum TransactionReason {
 	MEMBERSHIP_FEE, DEBT_PAYBACK
 }
